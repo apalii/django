@@ -25,8 +25,9 @@ In [10]: a.objects.all()
 Out[10]: [<Article: Test 1>, <Article: Test 2>, <Article: Test 777>]
 ```
 #### aditional
-
+```python
 Article.objects.filter(title__startswith='Qwerty')
 Article.objects.filter(title='Qwerty')
 
 Article.objects.all().filter(title='Qwerty').filter(body__startswith='something')
+```
