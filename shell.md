@@ -9,7 +9,7 @@ class Article(models.Model):
     def __unicode__(self):
         return self.title
 ```
-#### Shell actions :
+### Shell actions :
 
 ```python
 In [2]: from app_article.models import Article as a
@@ -23,5 +23,10 @@ In [9]: instance.id
 Out[9]: 3
 In [10]: a.objects.all()
 Out[10]: [<Article: Test 1>, <Article: Test 2>, <Article: Test 777>]
-
 ```
+#### aditional
+
+Article.objects.filter(title__startswith='Qwerty')
+Article.objects.filter(title='Qwerty')
+
+Article.objects.all().filter(title='Qwerty').filter(body__startswith='something')
