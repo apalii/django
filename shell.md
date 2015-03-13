@@ -28,15 +28,13 @@ class Task(models.Model):
 ### Shell actions :
 
 ```python
-from app_article.models import Article as a
+from app_tasks.models import Task as a
 from django.utils import timezone
 
-In [7]: instance = a(title='Test 777', body='some text', pub_date=timezone.now(), likes=3)
+In [7]: instance = a(ticket='Test', task='some text', date=timezone.now(), likes=3)
 In [8]: instance.save()
 In [9]: instance.id
 Out[9]: 3
-In [10]: a.objects.all()
-Out[10]: [<Article: Test 1>, <Article: Test 2>, <Article: Test 777>]
 ```
 #### Filtering
 ```python
