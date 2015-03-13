@@ -1,13 +1,29 @@
 Model class : 
 ```python
-class Article(models.Model):
-    title = models.CharField(max_length=200)
-    body = models.TextField()
-    pub_date = models.DateTimeField('date published')
-    likes = models.IntegerField()
+class Task(models.Model):
+
+    class Meta():
+        db_table = 'task'
+        ordering = ['date']
+
+    STATUSES = (
+        (u'Scheduled', u'Scheduled'),
+        (u'Done', u'Done'),
+        (u'In progress', u'In progress'),
+        (u'Postponed', u'Postponed'),
+        (u'Partially', u'Partially'),
+        (u'Cancelled', u'Cancelled'),
+        (u'Failed', u'Failed'),
+    )
+    ticket = models.CharField(max_length=30)
+    date = models.DateTimeField()
+    customer = models.CharField(max_length=30)
+    task = models.CharField(max_length=200)
+    executor = models.CharField(max_length=20)
+    status = models.CharField(max_length=20, choices=STATUSES)
 
     def __unicode__(self):
-        return self.title
+        return "{} : {}".format(str(self.id), self.ticket)
 ```
 ### Shell actions :
 
@@ -30,8 +46,12 @@ Article.objects.filter(title='Qwerty')
 Article.objects.all().filter(title='Qwerty').filter(body__startswith='something')
 ```
 #### Updating
+```python
 
+>>> t.objects.filter(status__startswith='Sch')
+[<Task: 1 : 400456>, <Task: 3 : 425321>]
 >>> t.objects.filter(id='1').update(status='Schduled')
 1
 >>> t.objects.filter(id='3').update(status='Schduled')
 3
+```
