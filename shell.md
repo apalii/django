@@ -40,7 +40,7 @@ Out[9]: 3
 ```python
 Article.objects.filter(title__startswith='Qwerty')
 Article.objects.filter(title='Qwerty')
-
+Article.objects.exclude(title='Qwerty')
 Article.objects.all().filter(title='Qwerty').filter(body__startswith='something')
 ```
 #### Updating
