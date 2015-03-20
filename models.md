@@ -49,6 +49,9 @@ Article.objects.all().filter(title='Qwerty').filter(body__startswith='something'
 >>> Entry.objects.order_by('author', 'pub_date').distinct('author', 'pub_date')
 >>> Entry.objects.order_by('blog__name', 'mod_date').distinct('blog__name', 'mod_date')
 >>> Entry.objects.order_by('author', 'pub_date').distinct('author')
+Lastest :
+Edition.objects.order_by('-pub_date')[0]
+
 ```
 #### Updating
 ```python
