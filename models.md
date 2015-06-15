@@ -63,3 +63,44 @@ Edition.objects.order_by('-pub_date')[0]
 >>> t.objects.filter(id='3').update(status='Schduled')
 3
 ```
+<br>
+```python
+>>> q1 = User.objects.filter(username__in=["a", "b", "c"])
+[<User: a>, <User: b>, <User: c>]
+>>> q2 = User.objects.filter(username__in=["c", "d"])
+[<User: c>, <User: d>]
+```
+### Union:
+```
+This combines and removes duplicates. 
+Use q1 | q2 to get [ <User:a> , <User: b> , <User: c> , <User: d> ]
+```
+### Intersection: 
+```
+This finds common items. Use q1 and q2 to get [ <User: c> ]
+```
+### Difference: 
+```
+This removes elements in second set from first. There is no
+logical operator for this. Instead use q1.exclude(pk__in=q2) to get [ <User:
+a> , <User: b> ]
+```
+
+The same operations can be done using the Q objects:
+```python
+from django.db.models import Q
+# Union
+>>> User.objects.filter(Q(username__in=["a", "b", "c"]) | Q(username__
+in=["c", "d"]))
+[<User: a>, <User: b>, <User: c>, <User: d>]
+
+# Intersection
+>>> User.objects.filter(Q(username__in=["a", "b", "c"]) & Q(username__
+in=["c", "d"]))
+[<User: c>]
+
+# Difference
+>>> User.objects.filter(Q(username__in=["a", "b", "c"]) &
+~Q(username__in=["c", "d"]))
+[<User: a>, <User: b>]
+```
