@@ -64,6 +64,7 @@ Edition.objects.order_by('-pub_date')[0]
 3
 ```
 <br>
+--------------------------------------------------
 ```python
 >>> q1 = User.objects.filter(username__in=["a", "b", "c"])
 [<User: a>, <User: b>, <User: c>]
@@ -104,3 +105,7 @@ in=["c", "d"]))
 ~Q(username__in=["c", "d"]))
 [<User: a>, <User: b>]
 ```
+Note that the difference is implemented using & (AND) and ~ (Negation).
+The Q objects are very powerful and can be used to build very complex queries.
+However, the Set analogy is not perfect. QuerySets , unlike mathematical sets,
+are ordered. So, they are closer to Python's list data structure in that respect.
