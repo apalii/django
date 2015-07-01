@@ -10,7 +10,7 @@ sudo pip install virtualenv
 ```
 3)
 ```bash
-$ virtualenv --no-site-packages myenv
+$ virtualenv -p `which python3` myenv
 ```
 4)
 ```bash
