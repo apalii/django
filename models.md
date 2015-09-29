@@ -52,6 +52,10 @@ Article.objects.all().filter(title='Qwerty').filter(body__startswith='something'
 Lastest :
 Edition.objects.order_by('-pub_date')[0]
 
+>>> Task.objects.filter(date__gt=now).order_by('date').values()[0]
+{'customer': u'ABCom', 'status': u'Scheduled', 'added': datetime.datetime(2015, 9, 28, 14, 31, 58, 556738, tzinfo=<UTC>), 'ip_addr': u'193.28.87.242', 'office': 2, 'task': u'qwqewqw', 'executor': u'qewqweqwe', 'date': datetime.datetime(2015, 9,
+30, 14, 31, tzinfo=<UTC>), 'ticket': u'123123', 'customer_id': u'20', u'id': 29, 'added_by': u'TEST_USER12370783'}
+
 ```
 #### Updating
 ```python
